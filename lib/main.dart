@@ -1,38 +1,104 @@
-// import 'dart:convert';
-//
-// import 'package:flutter/cupertino.dart';
-// import 'package:flutter/material.dart';
-// import 'package:http/http.dart';
-//
-// main() {
-//   runApp(MyWidget());
-// }
-//
-// class MyWidget extends StatefulWidget {
-//   const MyWidget({Key? key}) : super(key: key);
-//
-//   @override
-//   _MyWidgetState createState() => _MyWidgetState();
-// }
-//
-// class _MyWidgetState extends State<MyWidget> {
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       home: Scaffold(
-//         body: Center(
-//           child: FutureBuilder(
-//             builder: (context, snapshot) {
-//               Response? x=snapshot.data as Response? ;
-//               return jsonDecode(x!.body['results']['image']);
-//             },
-//             future: get(Uri.tryParse(
-//                 "https://api.spoonacular.com/recipes/complexSearch?query=pasta&maxFat=25&number=1?apikey=58d6d02afe77496d8e39b90340c833b1")!).whenComplete((){setState(() {
-//                   ;
-//                 });}),
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-// }
+import 'package:finalproject/Screens/AccountInformation.dart';
+import 'package:finalproject/Screens/ChangeLanguage.dart';
+import 'package:finalproject/Screens/ChangeScreen.dart';
+import 'package:finalproject/Screens/ForgetScreen.dart';
+import 'package:finalproject/Screens/IntroScreen.dart';
+import 'package:finalproject/Screens/LogScreen.dart';
+import 'package:finalproject/Screens/RecipeDetailsScreen.dart';
+import 'package:finalproject/Screens/RegScreen.dart';
+import 'package:finalproject/Screens/SplashScreen.dart';
+import 'package:finalproject/Servecis/API.dart';
+import 'package:finalproject/Servecis/DataPersitance.dart';
+import 'package:finalproject/Utils/Informations.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'Screens/MainScreen.dart';
+import 'Screens/test.dart';
+import 'generated/l10n.dart';
+import 'package:provider/provider.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+
+main() {
+  runApp(WebViewExample());
+}
+
+class MyApp extends StatelessWidget {
+  Widget build(BuildContext context) {
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider<SearchResult>(create: (BuildContext context) {
+          return SearchResult();
+        }),
+        ChangeNotifierProvider<settings>(
+          create: (BuildContext context) {
+            return settings();
+          },
+        ),
+      ],
+      child: MyWidget(),
+    );
+  }
+}
+
+class MyWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    Data.getLanguage().then((value) {
+      (value == "English" || value == null)
+          ? Provider.of<settings>(context, listen: false).lang = Language.en
+          : (value == "Spanish"
+              ? Provider.of<settings>(context, listen: false).lang = Language.es
+              : Provider.of<settings>(context, listen: false).lang =
+                  Language.ar);
+      Provider.of<settings>(context, listen: false).locale =
+          Provider.of<settings>(context, listen: false).getLocal();
+    });
+    Data.getTheme().then((value) {
+      Provider.of<settings>(context, listen: false).theme = value == "Light"
+          ? ThemeMode.light
+          : (value == null ? ThemeMode.system : ThemeMode.dark);
+    });
+
+    return MaterialApp(
+      themeMode: Provider.of<settings>(context).theme,
+      home: SplashScreen(),
+      localizationsDelegates: [
+        S.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: S.delegate.supportedLocales,
+      locale: Provider.of<settings>(context).locale,
+      routes: {
+        IntroScreen.id: (context) {
+          return IntroScreen();
+        },
+        LoginScreen.id: (context) {
+          return LoginScreen();
+        },
+        RegisterScreen.id: (context) {
+          return RegisterScreen();
+        },
+        Screen.id: (context) {
+          return Screen();
+        },
+        ChangePassword.id: (context) {
+          return ChangePassword();
+        },
+        AccountScreen.id: (context) {
+          return AccountScreen();
+        },
+        ForgetPassword.id: (context) {
+          return ForgetPassword();
+        },
+        LanguageScreen.id: (context) {
+          return LanguageScreen();
+        },
+        DetailsScreen.id: (context) {
+          return DetailsScreen();
+        }
+      },
+    );
+  }
+}

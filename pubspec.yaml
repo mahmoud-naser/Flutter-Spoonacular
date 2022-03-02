@@ -33,6 +33,25 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   http:
+  intl:
+  blur:
+  shared_preferences: 2.0.6
+  pinput: 1.1.0
+  like_button: ^2.0.4
+  curved_navigation_bar: ^1.0.1
+  webview_flutter:
+  animated_bottom_navigation_bar:
+  rflutter_alert:
+  regexpattern:
+  provider:
+  auto_size_text:
+  introduction_screen:
+  flutter_localizations:
+      sdk: flutter
+
+  flutter_intl:
+enabled: true
+main_locale: ar
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
@@ -48,7 +67,21 @@ flutter:
   # assets:
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
+  assets:
+    - lib/Assets/
 
+  fonts:
+    - family: Amiri-Bold
+      fonts:
+        - asset: lib/Fonts/Amiri-Bold.ttf
+
+    - family: Pacifico-Regular
+      fonts:
+        - asset: lib/Fonts/Pacifico-Regular.ttf
+
+    - family: Patua_One-Regular
+      fonts:
+        - asset: lib/Fonts/PatuaOne-Regular.ttf
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 
@@ -74,3 +107,5 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+flutter_intl:
+  enabled: true
