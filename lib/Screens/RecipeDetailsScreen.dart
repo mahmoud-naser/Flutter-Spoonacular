@@ -276,7 +276,7 @@ class _DetailsScreenState extends State<DetailsScreen>
                   onPressed: () {
                     Provider.of<settings>(context, listen: false)
                         .changeLanguage(Language.en);
-                    Data.storeLanguage("Enggit ");
+                    Data.storeLanguage("Esdfvcdscdscdsit ");
                     S.load(Locale("en", "US"));
                   })
             ],
