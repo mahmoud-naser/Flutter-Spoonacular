@@ -13,13 +13,13 @@ import 'package:finalproject/Utils/Informations.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'Screens/MainScreen.dart';
-import 'Screens/test.dart';
+import 'package:finalproject/Widgets/CircularChart.dart';
 import 'generated/l10n.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 main() {
-  runApp(WebViewExample());
+  runApp(PieChartWidget(names_percentages: {'mah':10,'alal':30,'fs':40,'vfdsv':20},Images: [],));
 }
 
 class MyApp extends StatelessWidget {

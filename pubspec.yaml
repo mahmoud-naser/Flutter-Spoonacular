@@ -41,6 +41,7 @@ dev_dependencies:
   curved_navigation_bar: ^1.0.1
   webview_flutter:
   animated_bottom_navigation_bar:
+  fl_chart:
   rflutter_alert:
   regexpattern:
   provider:

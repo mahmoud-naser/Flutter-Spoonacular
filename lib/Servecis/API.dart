@@ -273,28 +273,6 @@ class Widgets {
       throw new Exception("error in connect");
   }
 
-  Future<String> getPriceImage(String id) async {
-    var x = await get(
-        Uri.tryParse(
-            "https://api.spoonacular.com/recipes/$id/priceBreakdownWidget.png?apiKey=97eb091891f34a37873cc4036ae0298b")!,
-        headers: {"Accept": "text/html"});
-    if (x.statusCode == 200)
-      return x.body;
-    else
-      throw new Exception("error in connect");
-  }
-
-  /*Future<String> getRecipeTasteImage(String id) async {
-    var x = await get(
-        Uri.tryParse(
-            "https://api.spoonacular.com/recipes/$id/tasteWidget?apiKey=97eb091891f34a37873cc4036ae0298b&defaultCss=true")!,
-        headers: {"Accept": "text/html"});
-    if (x.statusCode == 200)
-      return x.body.toString();
-    else
-      throw new Exception("error in connect");
-  }*/
-
   Future<String> getRecipeNutritionWidget(String id) async {
     var x = await get(
         Uri.tryParse(
