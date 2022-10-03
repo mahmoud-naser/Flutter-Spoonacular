@@ -19,7 +19,8 @@ import 'package:provider/provider.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 main() {
-  runApp(PieChartWidget(names_percentages: {'mah':10,'alal':30,'fs':40,'vfdsv':20},Images: [],));
+  //PieChartWidget(names_percentages: {'mah':10,'alal':30,'fs':40,'vfdsv':20},Images: [],)
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
